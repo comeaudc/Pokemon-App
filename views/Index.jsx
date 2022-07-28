@@ -24,6 +24,12 @@ const main = {
     alignItems: "center",
 }
 
+const row = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between"
+}
+
 
 
 class Index extends React.Component {
@@ -36,15 +42,17 @@ class Index extends React.Component {
             </head>
             <body style={main}>
                 <h1>See All The Pokemon!</h1><br/>
+                <h4>Click the Pokeball to view Pokemon!!!</h4>
                 <ul>
                     {pokemon.map((mons, i) => {
                         let name = mons.name.split('');
                         name[0] = name[0].toUpperCase();
                         name.join('');
                         return (
-                            <li>
-                                <a href={`/pokemon/${i}`}>{name}</a>
-                                  <br/>
+                            <li style={row}>
+                                <h3>{name}</h3>
+                                <a href={`/pokemon/${i}`}><img src="https://www.freeiconspng.com/uploads/file-pokeball-png-0.png" width="350" width="20px" height="20px"></img></a>
+                                <br/>
                             </li>
                         );
                     })}
