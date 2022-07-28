@@ -5,6 +5,10 @@ const port = process.env.PORT || 3003;
 //Require pokemon DB
 const pokemon = require('./models/pokemon');
 
+//Setting up views
+app.set('view engine', "jsx");
+app.engine('jsx', require('express-react-views').createEngine());
+
 app.listen(port, ()=> {
     console.log(`I am listening on port`, port);
 });
@@ -14,5 +18,5 @@ app.get('/', (req, res) => {
 })
 
 app.get('/pokemon', (req, res) => {
-    res.send(pokemon)
+    res.render('Index')
 });
