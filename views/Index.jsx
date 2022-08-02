@@ -45,13 +45,23 @@ class Index extends React.Component {
                 <h4>Click the Pokeball to view Pokemon!!!</h4>
                 <ul>
                     {pokemon.map((mons, i) => {
+                        mons.name = (mons.name).toString()
                         let name = mons.name.split('');
-                        name[0] = name[0].toUpperCase();
-                        name.join('');
+                        if(name[0] !== name[0].toUpperCase()){
+                            name[0] = name[0].toUpperCase();
+                            mons.name = name.join('');
+
+                            let image = mons.img + ".jpg";
+                            mons.img = image;
+                        } else {
+                            mons.name = name.join('');
+                        }
+                        
+                        
                         return (
                             <li style={row}>
-                                <h3>{name}</h3>
-                                <a href={`/pokemon/${i}`}><img src="https://www.freeiconspng.com/uploads/file-pokeball-png-0.png" width="350" width="20px" height="20px"></img></a>
+                                <h3>{mons.name}</h3>
+                                <a href={`/pokemon/${i}`}><img src="https://www.freeiconspng.com/uploads/file-pokeball-png-0.png" width="20px" height="20px"></img></a>
                                 <br/>
                             </li>
                         );
