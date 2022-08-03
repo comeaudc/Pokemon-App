@@ -18,6 +18,13 @@ const body = {
     textDecoration: "underline"
 }
 
+const button = {
+    margin: "10px",
+    borderRadius: "25%",
+    border: "5px ridge black",
+    backgroundColor: "grey"
+}
+
 const main = {
     display: "flex",
     flexDirection: "column",
@@ -27,46 +34,46 @@ const main = {
 const row = {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
 }
 
+const margin1 = {
+    marginBottom: 0
+}
 
+const margin2 = {
+    marginBottom: 0,
+    marginTop: 0
+}
 
 class Index extends React.Component {
     render(){
-        const {pokemon} = this.props;
+        const { pokemon } = this.props;
         return(
             <html style={body}>
             <head>
                 <title>Pokemon</title>
             </head>
             <body style={main}>
-                <h1>See All The Pokemon!</h1><br/>
-                <h4>Click the Pokeball to view Pokemon!!!</h4>
+                <h1 style={margin1}>See All The Pokemon!</h1><br/>
+                <h3 style={margin2}>Click the Pokeball to view Pokemon!!!</h3>
                 <ul>
-                    {pokemon.map((mons, i) => {
+                    {pokemon.map((mons) => {
                         mons.name = (mons.name).toString()
                         let name = mons.name.split('');
-                        if(name[0] !== name[0].toUpperCase()){
-                            name[0] = name[0].toUpperCase();
-                            mons.name = name.join('');
-
-                            let image = mons.img + ".jpg";
-                            mons.img = image;
-                        } else {
-                            mons.name = name.join('');
-                        }
-                        
+                        name[0] = name[0].toUpperCase();
+                        mons.name = name.join('');
                         
                         return (
                             <li style={row}>
                                 <h3>{mons.name}</h3>
-                                <a href={`/pokemon/${i}`}><img src="https://www.freeiconspng.com/uploads/file-pokeball-png-0.png" width="20px" height="20px"></img></a>
+                                <a href={`/pokemon/${mons.id}`}><img src="https://www.freeiconspng.com/uploads/file-pokeball-png-0.png" width="20px" height="20px"></img></a>
                                 <br/>
                             </li>
                         );
                     })}
                 </ul>
+                <a href="/"><button style={button}><h3>Back to Main Directory!</h3></button></a><br/>
             </body>
             </html>
         )
