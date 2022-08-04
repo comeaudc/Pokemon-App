@@ -36,9 +36,10 @@ app.get('/pokemon/seed', (req, res) => {
     //Comment below line if you don't want to delete your whole entire collection
     // Not currently working
     // Pokemon.deleteMany({})
-    
+
     //Create a list of pokemon into our database
     Pokemon.create(pokemonData)
+    res.redirect('/pokemon')
 });
 
 // Home page
