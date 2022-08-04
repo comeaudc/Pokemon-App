@@ -22,7 +22,8 @@ const button = {
     margin: "10px",
     borderRadius: "25%",
     border: "5px ridge black",
-    backgroundColor: "grey"
+    backgroundColor: "grey",
+    cursor: "pointer"
 }
 
 const margin1 = {
