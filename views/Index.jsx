@@ -73,6 +73,7 @@ class Index extends React.Component {
                                 <form action={`/pokemon/${mons.id}?_method=DELETE`} method="POST">
                                     <button type="submit" style={button}><h4 style={h4}>Delete Entry</h4></button>
                                 </form>
+                                <a href={`/pokemon/${mons.id}/edit`}><button type="submit" style={button}><h4 style={h4}>Edit Entry</h4></button></a>
                             </li>
                         );
                     })}

@@ -31,10 +31,13 @@ app.listen(port, ()=> {
     console.log(`I am listening on port`, port);
 });
 
+
+// Home page
 app.get('/', (req, res) => {
     res.render('Home')
 })
 
+//Index page
 app.get('/pokemon', (req, res) => {
     Pokemon.find({}, (error, allPokemon) => {
         res.render('Index', {
@@ -43,24 +46,25 @@ app.get('/pokemon', (req, res) => {
     })
 });
 
+//Create pokemon page
 app.get('/pokemon/new', (req, res) => {
     res.render('New');
 });
 
+//Create pokemon POST route
 app.post('/pokemon/', (req, res) => {
+    //Data manipulation
     let name = req.body.name.split('')
     name[0] = name[0].toUpperCase()
     req.body.name = name.join('')
 
-    console.log.apply()
     Pokemon.create(req.body,(err, createdPokemon) => {
        res.redirect('/pokemon');
     //    res.send(createdPokemon);
     });
 });
-
+//Show route
 app.get('/pokemon/:id', (req, res) =>{
-
     Pokemon.findById(req.params.id, (err,foundPokemon) =>{
         res.render("Show", {
             pokemon: foundPokemon
@@ -75,3 +79,22 @@ app.delete('/pokemon/:id', (req, res) => {
         res.redirect('/pokemon')
     })
 });
+// Render Edit Page
+app.get('/pokemon/:id/edit', (req, res) => {
+    Pokemon.findById(req.params.id, (err, foundPokemon) =>{
+        if(!err){res.render('Edit', {
+            pokemon: foundPokemon
+        })} else {
+            res.send({
+                msg: err.message
+            })
+        }
+    })
+})
+//update route
+app.put('.pokemon/:id/edit', (req, res) => {
+    Pokemon.findByIdAndUpdate(req.params.id, req.body, {
+        new: true
+    })
+    res.redirect(`/pokemon/${req.params.id}`)
+})
