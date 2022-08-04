@@ -2,11 +2,12 @@ const express = require('express');
 require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3003;
-const mongoose = require('mongoose');
-//Require pokemon DB
-const Pokemon = require('./models/pokemon');
+const mongoose = require('mongoose'); // Require Mongooose
+const Pokemon = require('./models/pokemon'); //Require pokemon DB
 const methodOverride = require('method-override') //Add method override
+const pokemonData = require('./utilities/pokemonData')
 
+//DB connection
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true, 
     useUnifiedTopology: true});
@@ -30,6 +31,15 @@ app.listen(port, ()=> {
     console.log(`I am listening on port`, port);
 });
 
+//Our seed route
+app.get('/pokemon/seed', (req, res) => {
+    //Comment below line if you don't want to delete your whole entire collection
+    // Not currently working
+    // Pokemon.deleteMany({})
+    
+    //Create a list of pokemon into our database
+    Pokemon.create(pokemonData)
+});
 
 // Home page
 app.get('/', (req, res) => {
