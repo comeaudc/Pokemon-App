@@ -49,7 +49,7 @@ class Edit extends React.Component {
                 <h1 style={margin1}>Update Your Pokedex Entry</h1>
                 <h3 style={margin2}>Tell me about the Pokemon!</h3>
                     {/* NOTE: action will be the route, method will be the HTTP verb */}
-                    <form action={`/pokemon/${pokemon.id}?_method=PUT`} method="PUT">
+                    <form action={`/pokemon/${pokemon.id}?_method=PUT`} method="POST">
                         Name: <input style={margin3} type="text" name="name" placeholder='Name'/><br/>
                         Image: <input style={margin3} type="text" name="img" placeholder='Image URL' /><br/>
                         <input type="submit" name="" value="Edit Entry"/>

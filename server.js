@@ -76,24 +76,26 @@ app.delete('/pokemon/:id', (req, res) => {
     //First arg is ID we want to delet, 2nd arg is callback function
     Pokemon.findByIdAndRemove(req.params.id, (err, data) => {
         res.redirect('/pokemon')
-    })
+    });
 });
 // Render Edit Page
 app.get('/pokemon/:id/edit', (req, res) => {
     Pokemon.findById(req.params.id, (err, foundPokemon) =>{
-        if(!err){res.render('Edit', {
-            pokemon: foundPokemon
+        if(!err){
+            res.render('Edit', {
+                pokemon: foundPokemon
         })} else {
             res.send({
                 msg: err.message
-            })
+            });
         }
     })
-})
-//update route
-app.put('.pokemon/:id/edit', (req, res) => {
+});
+//Put new information in DB
+app.put('/pokemon/:id', (req, res) => {
     Pokemon.findByIdAndUpdate(req.params.id, req.body, {
         new: true
+    }, (error, pokemon) => {
+        res.redirect(`/pokemon/${req.params.id}`)
     })
-    res.redirect(`/pokemon/${req.params.id}`)
-})
+});
