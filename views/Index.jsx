@@ -26,6 +26,11 @@ const button = {
     cursor: "pointer"
 }
 
+const h4 = {
+    padding: 0,
+    margin: "5px"
+}
+
 const main = {
     display: "flex",
     flexDirection: "column",
@@ -65,6 +70,9 @@ class Index extends React.Component {
                                 <h3>{mons.name}</h3>
                                 <a href={`/pokemon/${mons.id}`}><img src="https://www.freeiconspng.com/uploads/file-pokeball-png-0.png" width="20px" height="20px"></img></a>
                                 <br/>
+                                <form action={`/pokemon/${mons.id}?_method=DELETE`} method="POST">
+                                    <button type="submit" style={button}><h4 style={h4}>Delete Entry</h4></button>
+                                </form>
                             </li>
                         );
                     })}

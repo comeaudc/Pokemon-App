@@ -6,6 +6,7 @@ const port = process.env.PORT || 3003;
 const mongoose = require('mongoose');
 //Require pokemon DB
 const Pokemon = require('./models/pokemon');
+const methodOverride = require('method-override') //Add method override
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true, 
@@ -18,7 +19,8 @@ mongoose.connection.once('open', () => {
 app.use((req, res, next) => {
     console.log(`I run for all routes`);
     next();
- });
+});
+app.use(methodOverride('_method')) //Sets up methodoverride for use
 
 //Setting up views
 app.set('view engine', "jsx");
@@ -65,15 +67,11 @@ app.get('/pokemon/:id', (req, res) =>{
         }); 
     });  
 });
-// app.delete('pokemon/:id', (req, res) => {
-//     Pokemon.findByIdAndRemove({_id: req.params.id}).then(function(pokemon){
-//         if(!pokemon)
-//         res.send(pokemon)
-//     })
-// });
 
-function add(num1, num2){
-    return num1 + num2
-}
-
-
+//Delete Route
+app.delete('/pokemon/:id', (req, res) => {
+    //First arg is ID we want to delet, 2nd arg is callback function
+    Pokemon.findByIdAndRemove(req.params.id, (err, data) => {
+        res.redirect('/pokemon')
+    })
+});
