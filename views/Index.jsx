@@ -59,11 +59,6 @@ class Index extends React.Component {
                 <h3 style={margin2}>Click the Pokeball to view Pokemon!!!</h3>
                 <ul>
                     {pokemon.map((mons) => {
-                        mons.name = (mons.name).toString()
-                        let name = mons.name.split('');
-                        name[0] = name[0].toUpperCase();
-                        mons.name = name.join('');
-                        
                         return (
                             <li style={row}>
                                 <h3>{mons.name}</h3>

@@ -50,6 +50,7 @@ app.post('/pokemon/', (req, res) => {
     name[0] = name[0].toUpperCase()
     req.body.name = name.join('')
 
+    console.log.apply()
     Pokemon.create(req.body,(err, createdPokemon) => {
        res.redirect('/pokemon');
     //    res.send(createdPokemon);
@@ -64,10 +65,15 @@ app.get('/pokemon/:id', (req, res) =>{
         }); 
     });  
 });
-
 // app.delete('pokemon/:id', (req, res) => {
 //     Pokemon.findByIdAndRemove({_id: req.params.id}).then(function(pokemon){
 //         if(!pokemon)
 //         res.send(pokemon)
 //     })
 // });
+
+function add(num1, num2){
+    return num1 + num2
+}
+
+
