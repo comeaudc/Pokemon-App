@@ -31,6 +31,17 @@ const back  = {
     border: "5px ridge black"
 }
 
+const h4 = {
+    padding: 0,
+    margin: "5px"
+}
+
+const row = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+}
+
 class Show extends React.Component {
     render(){
         const mons = this.props.pokemon;
@@ -43,6 +54,12 @@ class Show extends React.Component {
                 <h1>Gotta Catch 'Em All!</h1>
                 <h2>{mons.name}</h2>
                 <img src={mons.img + '.jpg'}></img>
+                <div style={row}>
+                    <form action={`/pokemon/${mons.id}?_method=DELETE`} method="POST">
+                        <button type="submit" style={button}><h4 style={h4}>Delete Entry</h4></button>
+                    </form>
+                    <a href={`/pokemon/${mons.id}/edit`}><button type="submit" style={button}><h4 style={h4}>Edit Entry</h4></button></a>
+                </div>
                 <a href="/"><button style={button}><h3>Back to Main Directory!</h3></button></a><br/>
                 <a href="/pokemon"><button style={button}><h3>View Pokedex</h3></button></a><br/>
                 
