@@ -53,7 +53,7 @@ class Show extends React.Component {
             <body style={main}>
                 <h1>Gotta Catch 'Em All!</h1>
                 <h2>{mons.name}</h2>
-                <img src={mons.img + '.jpg'}></img>
+                <img src={mons.img}></img>
                 <div style={row}>
                     <form action={`/pokemon/${mons.id}?_method=DELETE`} method="POST">
                         <button type="submit" style={button}><h4 style={h4}>Delete Entry</h4></button>
